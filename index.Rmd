@@ -112,7 +112,13 @@ ggplot(ca_covid19, aes(x=reorder(pais, -positivos), y=positivos)) +
 ```
 
 4. (10% - OPCIONAL) Genere un solo gráfico de barras que presente los cuatros tipos de casos, ya sea en barras apiladas o agrupadas.
-
 ```{r}
+library(reshape2)
 
+ca_c19 <- melt(ca_covid19) 
+
+ggplot(ca_c19, aes(fill=variable, y=value, x=pais)) + 
+    geom_bar(position="dodge", stat="identity")+ggtitle("Variables de casos COVID-19 agrupadas (Centroamérica y DOM)") +
+    xlab("País") + 
+    ylab("Casos")
 ```
